@@ -5,62 +5,39 @@
 ---
 
 ## 📌 Estado Atual do Projeto
-- **Versão Atual:** `v2.1-phone-field`
-- **Último Checkpoint:** `CP-005-ADD-PHONE-FIELD-TO-LEAD`
+- **Versão Atual:** `v2.2-remove-prices`
+- **Último Checkpoint:** `CP-006-REMOVE-PRICES`
 - **Projeto Supabase:** Miriane Alves / Projeto iCooe (`https://jrleyeoubalefjzgudcx.supabase.co`)
-- **Status:** Campo Telefone/WhatsApp com Máscara e Gravação em Nuvem Ativos em Produção
+- **Status:** Remoção de Preços dos Cartões Concluída e Publicada em Produção
 
 ---
 
 ## 📜 Histórico de Checkpoints (Append-Only)
 
-### [CP-005-ADD-PHONE-FIELD-TO-LEAD] — 19/09/2026
-- **Data/Hora:** 2026-09-19 10:45:00 (UTC-3)
-- **Autor da Autorização:** Usuário (via chat: *"ok"*)
+### [CP-006-REMOVE-PRICES] — 19/09/2026
+- **Data/Hora:** 2026-09-19 10:52:00 (UTC-3)
+- **Autor da Autorização:** Usuário (via chat: *"chat os preços não são necessarios aparecer no site"*)
 - **Resumo:**
-  - Adicionado o campo obrigatório `Seu Telefone / WhatsApp (com DDD)` ao formulário de Cotação do Usado.
-  - Implementada máscara de digitação de telefone no padrão brasileiro `(XX) XXXXX-XXXX`.
-  - Atualizada a gravação no Supabase (`telefone`) e o texto da mensagem no WhatsApp da Consultora.
+  - Removido o bloco de preços (`.car-pricing`) de todos os cartões de veículos no catálogo.
+  - Atualizado o botão de ação dos veículos para **"Consultar Oferta no WhatsApp"**.
   - Deploy atualizado no Surge Cloud (`https://miriane-alves-vw-brasilia.surge.sh`).
 - **Arquivos Criados/Modificados:**
-  - `index.html` [MODIFY]
   - `app.js` [MODIFY]
-  - `supabase-client.js` [MODIFY]
-  - `schema.sql` [MODIFY]
   - `ESTADO.md` [MODIFY]
-  - `FASES.md` [MODIFY]
-- **Commit/Tag Git:** `v2.1-phone-field`
+- **Commit/Tag Git:** `v2.2-remove-prices`
 - **Instruções de Reversão (Rollback):**
   ```bash
-  git checkout v2.1-phone-field
+  git checkout v2.2-remove-prices
   ```
+
+---
+
+### [CP-005-ADD-PHONE-FIELD-TO-LEAD] — 19/09/2026
+- **Data/Hora:** 2026-09-19 10:45:00 (UTC-3)
+- **Commit/Tag Git:** `v2.1-phone-field`
 
 ---
 
 ### [CP-004-PRODUCTION-RELEASE-V2] — 19/09/2026
 - **Data/Hora:** 2026-09-19 10:18:00 (UTC-3)
-- **Autor da Autorização:** Usuário (via chat: *"feito"*)
-- **Resumo:**
-  - Script SQL `schema.sql` executado no Supabase Miriane Alves com sucesso.
-  - Tabelas `leads` e `analytics_pageviews` criadas com RLS e políticas de inserção públicas habilitadas.
-  - Teste de gravação end-to-end verificado com retorno HTTP 201 Created.
-  - Projeto no Padrão de Engenharia Universal v3.2 pronto e publicado em produção no Surge.
 - **Commit/Tag Git:** `v2.0-production-release`
-
----
-
-### [CP-003-DASHBOARD-SUPABASE-SYNC] — 19/09/2026
-- **Data/Hora:** 2026-09-19 10:10:00 (UTC-3)
-- **Commit/Tag Git:** `v1.2-dashboard-sync`
-
----
-
-### [CP-002-SUPABASE-LEADS-CONNECTED] — 19/09/2026
-- **Data/Hora:** 2026-09-19 10:05:00 (UTC-3)
-- **Commit/Tag Git:** `v1.1-leads-supabase`
-
----
-
-### [CP-001-UNIVERSAL-SUPABASE-INIT] — 19/09/2026
-- **Data/Hora:** 2026-09-19 09:58:00 (UTC-3)
-- **Commit/Tag Git:** `v1.0-universal-init`

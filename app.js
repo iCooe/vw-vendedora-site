@@ -472,15 +472,9 @@ function renderCarsGrid(vehicles) {
           </div>
         </div>
 
-        <div class="car-pricing">
-          <div class="old-price">De ${formatCurrency(car.oldPrice)}</div>
-          <div class="current-price">Por ${formatCurrency(car.price)}</div>
-          <div class="monthly-tag">Ou parcelas a partir de <strong>${formatCurrency(car.minInstallment)}/mês</strong></div>
-        </div>
-
-        <div class="car-card-actions">
+        <div class="car-card-actions" style="margin-top: 20px;">
           <a href="#" class="btn btn-whatsapp btn-lg btn-full" onclick="directCarWhatsApp(event, '${car.name}')">
-            <i class="fa-brands fa-whatsapp"></i> Garantir Oferta
+            <i class="fa-brands fa-whatsapp"></i> Consultar Oferta no WhatsApp
           </a>
         </div>
       </div>

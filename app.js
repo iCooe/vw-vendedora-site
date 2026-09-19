@@ -89,7 +89,7 @@ const VEHICLES_DATA = [
     price: 186990,
     oldPrice: 194990,
     minInstallment: 1890,
-    image: "./assets/vw_hero.jpg",
+    image: "./assets/vw_taos.jpg",
     badge: "Nota 5 Estrelas ⭐️",
     specs: {
       engine: "1.4 TSI 150cv",

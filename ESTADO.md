@@ -5,30 +5,38 @@
 ---
 
 ## 📌 Estado Atual do Projeto
-- **Versão Atual:** `v2.2-remove-prices`
-- **Último Checkpoint:** `CP-006-REMOVE-PRICES`
+- **Versão Atual:** `v2.3-taos-image`
+- **Último Checkpoint:** `CP-007-FIX-TAOS-IMAGE`
 - **Projeto Supabase:** Miriane Alves / Projeto iCooe (`https://jrleyeoubalefjzgudcx.supabase.co`)
-- **Status:** Remoção de Preços dos Cartões Concluída e Publicada em Produção
+- **Status:** Foto Oficial do Novo Volkswagen Taos Highline Atualizada em Produção
 
 ---
 
 ## 📜 Histórico de Checkpoints (Append-Only)
 
-### [CP-006-REMOVE-PRICES] — 19/09/2026
-- **Data/Hora:** 2026-09-19 10:52:00 (UTC-3)
-- **Autor da Autorização:** Usuário (via chat: *"chat os preços não são necessarios aparecer no site"*)
+### [CP-007-FIX-TAOS-IMAGE] — 19/09/2026
+- **Data/Hora:** 2026-09-19 11:01:00 (UTC-3)
+- **Autor da Autorização:** Usuário (via chat: *"ok"*)
 - **Resumo:**
-  - Removido o bloco de preços (`.car-pricing`) de todos os cartões de veículos no catálogo.
-  - Atualizado o botão de ação dos veículos para **"Consultar Oferta no WhatsApp"**.
-  - Deploy atualizado no Surge Cloud (`https://miriane-alves-vw-brasilia.surge.sh`).
+  - Substituída a imagem genérica da concessionária (`./assets/vw_hero.jpg`) pela foto oficial do SUV **Novo Volkswagen Taos Highline** (`./assets/vw_taos.jpg`).
+  - Atualizada a propriedade `image` em `VEHICLES_DATA` no `app.js`.
+  - Deploy publicado em produção no Surge Cloud (`https://miriane-alves-vw-brasilia.surge.sh`).
 - **Arquivos Criados/Modificados:**
+  - `assets/vw_taos.jpg` [NEW]
   - `app.js` [MODIFY]
   - `ESTADO.md` [MODIFY]
-- **Commit/Tag Git:** `v2.2-remove-prices`
+  - `FASES.md` [MODIFY]
+- **Commit/Tag Git:** `v2.3-taos-image`
 - **Instruções de Reversão (Rollback):**
   ```bash
-  git checkout v2.2-remove-prices
+  git checkout v2.3-taos-image
   ```
+
+---
+
+### [CP-006-REMOVE-PRICES] — 19/09/2026
+- **Data/Hora:** 2026-09-19 10:52:00 (UTC-3)
+- **Commit/Tag Git:** `v2.2-remove-prices`
 
 ---
 

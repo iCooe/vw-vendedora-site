@@ -364,6 +364,22 @@ function setupEventListeners() {
     });
   }
 
+  // Máscara de Telefone com DDD (XX) XXXXX-XXXX
+  const phoneInput = document.getElementById("trade-phone");
+  if (phoneInput) {
+    phoneInput.addEventListener("input", (e) => {
+      let v = e.target.value.replace(/\D/g, "");
+      if (v.length > 11) v = v.substring(0, 11);
+      if (v.length > 6) {
+        e.target.value = `(${v.substring(0, 2)}) ${v.substring(2, 7)}-${v.substring(7)}`;
+      } else if (v.length > 2) {
+        e.target.value = `(${v.substring(0, 2)}) ${v.substring(2)}`;
+      } else if (v.length > 0) {
+        e.target.value = `(${v}`;
+      }
+    });
+  }
+
 function getUrlParam(name) {
   const urlParams = new URLSearchParams(window.location.search);
   return urlParams.get(name) || "";
@@ -378,6 +394,7 @@ function getUrlParam(name) {
       const year = document.getElementById("trade-year").value;
       const km = document.getElementById("trade-km").value;
       const targetCar = document.getElementById("trade-target").value;
+      const phone = document.getElementById("trade-phone") ? document.getElementById("trade-phone").value : "";
       const installment = document.getElementById("trade-installment") ? document.getElementById("trade-installment").value : "";
 
       const leadData = {
@@ -385,13 +402,14 @@ function getUrlParam(name) {
         year,
         km,
         targetCar,
+        phone,
         installment,
         utmSource: getUrlParam("utm_source"),
         utmMedium: getUrlParam("utm_medium"),
         utmCampaign: getUrlParam("utm_campaign")
       };
 
-      trackAction("btn_tradein_send", `Solicitação de Avaliação do Usado: ${model} (${year}) - Parcela: ${installment}`);
+      trackAction("btn_tradein_send", `Solicitação de Avaliação do Usado: ${model} (${year}) - Tel: ${phone} - Parcela: ${installment}`);
 
       // 1. Gravacao em Nuvem no Supabase Miriane Alves
       if (typeof saveLeadToSupabase === "function") {
@@ -407,7 +425,7 @@ function getUrlParam(name) {
       }).catch(err => console.log("FormSubmit lead enviado:", err));
 
       // 3. Abertura do WhatsApp da Consultora
-      const message = `Olá ${CONSULTANT_CONFIG.name}! Gostaria de *Avaliar meu Veículo Usado na Troca*:\n\n🚙 *Meu Carro Atual:* ${model} (${year})\n🛣️ *Km:* ${km} km\n🎯 *Interesse no VW:* ${targetCar}\n💳 *Parcela Pretendida:* ${installment}\n\nPode fazer uma cotação para mim?`;
+      const message = `Olá ${CONSULTANT_CONFIG.name}! Gostaria de *Avaliar meu Veículo Usado na Troca*:\n\n🚙 *Meu Carro Atual:* ${model} (${year})\n🛣️ *Km:* ${km} km\n🎯 *Interesse no VW:* ${targetCar}\n📞 *Meu Telefone/Zap:* ${phone}\n💳 *Parcela Pretendida:* ${installment}\n\nPode fazer uma cotação para mim?`;
       openWhatsAppLink(message);
     });
   }

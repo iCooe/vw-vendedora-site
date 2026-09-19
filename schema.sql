@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS public.leads (
     quilometragem INTEGER,
     vw_desejado TEXT NOT NULL,
     valor_pretendido_parcela TEXT,
+    telefone TEXT,
     origem TEXT DEFAULT 'Landing Page VW Miriane Alves',
     utm_source TEXT,
     utm_medium TEXT,

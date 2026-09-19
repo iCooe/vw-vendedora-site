@@ -37,6 +37,7 @@ async function saveLeadToSupabase(leadData) {
         quilometragem: parseInt(leadData.km) || null,
         vw_desejado: leadData.targetCar,
         valor_pretendido_parcela: leadData.installment,
+        telefone: leadData.phone || null,
         origem: "Landing Page VW Miriane Alves",
         utm_source: leadData.utmSource || null,
         utm_medium: leadData.utmMedium || null,

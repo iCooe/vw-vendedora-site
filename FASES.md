@@ -1,0 +1,35 @@
+# FASES.md — Roteiro de Desenvolvimento Vertical (Padrão Universal v3.2)
+
+---
+
+## 🟢 FASE 1: Governança, Supabase & Schema SQL (STATUS: CONCLUÍDA)
+- [x] Instanciação do `AGENTS.md` (regras e aprovação prévia).
+- [x] Instanciação do `ESTADO.md` (ledger de pontos de restauração).
+- [x] Criação das variáveis de ambiente `.env` com as chaves do projeto Supabase **Miriane Alves**.
+- [x] Criação do módulo de conexão `supabase-client.js`.
+- [x] Criação do script DDL `schema.sql` com as tabelas `leads`, `analytics_pageviews` e `system_checkpoints`.
+- [x] Ponto de Restauração: `CP-001-UNIVERSAL-SUPABASE-INIT`.
+
+---
+
+## 🟡 FASE 2: Conexão Nível Dados (Leads & UTM Tracking no Supabase)
+- [ ] Conectar o formulário de Cotação do Usado (`#trade-in-form`) ao Supabase (`leads`).
+- [ ] Gravar campos: `marca__modelo_do_seu_carro`, `ano`, `quilometragem_km`, `qual_volkswagen_voc_quer_comprar`, `valor_pretendido_da_parcela`.
+- [ ] Gravar parâmetros UTMs de anúncios (`utm_source`, `utm_medium`, `utm_campaign`).
+- [ ] Manter envio FormSubmit + WhatsApp como canais de redundância em caso de oscilação de rede.
+- [ ] Ponto de Restauração: `CP-002-SUPABASE-LEADS-CONNECTED`.
+
+---
+
+## 🔵 FASE 3: Sincronização da Dashboard em Tempo Real
+- [ ] Conectar os indicadores de métricas da Dashboard às tabelas `analytics_pageviews` e `leads` do Supabase.
+- [ ] Exibir logs em tempo real na tabela de atividades da Dashboard.
+- [ ] Ponto de Restauração: `CP-003-DASHBOARD-SUPABASE-SYNC`.
+
+---
+
+## 🟣 FASE 4: Verificação Final, Testes & Deploy de Produção
+- [ ] Teste end-to-end de inserção de lead e conferência no painel Supabase.
+- [ ] Auditoria de segurança e validação das regras `[M]` do Padrão Universal.
+- [ ] Deploy atualizado no Surge Cloud (`https://miriane-alves-vw-brasilia.surge.sh`).
+- [ ] Ponto de Restauração Final: `CP-004-PRODUCTION-RELEASE-V2`.

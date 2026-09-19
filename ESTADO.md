@@ -5,14 +5,34 @@
 ---
 
 ## 📌 Estado Atual do Projeto
-- **Versão Atual:** `v1.1-leads-supabase`
-- **Último Checkpoint:** `CP-002-SUPABASE-LEADS-CONNECTED`
+- **Versão Atual:** `v1.2-dashboard-sync`
+- **Último Checkpoint:** `CP-003-DASHBOARD-SUPABASE-SYNC`
 - **Projeto Supabase:** Miriane Alves (`https://jrleyeoubalefjzgudcx.supabase.co`)
-- **Status:** Fase 2 Concluída — Gravação Nível Dados (Leads + UTMs) no Supabase Ativa em Produção
+- **Status:** Fase 3 Concluída — Sincronização em Tempo Real da Dashboard com o Supabase Ativa em Produção
 
 ---
 
 ## 📜 Histórico de Checkpoints (Append-Only)
+
+### [CP-003-DASHBOARD-SUPABASE-SYNC] — 19/09/2026
+- **Data/Hora:** 2026-09-19 10:10:00 (UTC-3)
+- **Autor da Autorização:** Usuário (via chat: *"ok"*)
+- **Resumo:**
+  - Adicionado rastreamento de acessos (analytics_pageviews) com contagem de dispositivos no Supabase.
+  - Sincronização dos KPIs de visualização e preenchimentos da Dashboard diretamente do Supabase Miriane Alves.
+  - Deploy atualizado no Surge Cloud (`https://miriane-alves-vw-brasilia.surge.sh`).
+- **Arquivos Criados/Modificados:**
+  - `supabase-client.js` [MODIFY]
+  - `app.js` [MODIFY]
+  - `ESTADO.md` [MODIFY]
+  - `FASES.md` [MODIFY]
+- **Commit/Tag Git:** `v1.2-dashboard-sync`
+- **Instruções de Reversão (Rollback):**
+  ```bash
+  git checkout v1.2-dashboard-sync
+  ```
+
+---
 
 ### [CP-002-SUPABASE-LEADS-CONNECTED] — 19/09/2026
 - **Data/Hora:** 2026-09-19 10:05:00 (UTC-3)

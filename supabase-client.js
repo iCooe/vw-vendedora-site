@@ -57,10 +57,62 @@ async function saveLeadToSupabase(leadData) {
   }
 }
 
+// Registrar Visualizacao de Pagina (Analytics)
+async function trackPageviewSupabase() {
+  try {
+    const client = getSupabaseClient();
+    if (!client) return;
+
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    const deviceType = isMobile ? "Mobile" : "Desktop";
+
+    await client.from("analytics_pageviews").insert([
+      {
+        device_type: deviceType,
+        user_agent: navigator.userAgent,
+        referrer: document.referrer || "Direto",
+        page_url: window.location.href
+      }
+    ]);
+  } catch (err) {
+    console.warn("Erro ao registrar pageview no Supabase:", err);
+  }
+}
+
+// Buscar Dados Consolidados da Dashboard no Supabase
+async function fetchDashboardDataFromSupabase() {
+  try {
+    const client = getSupabaseClient();
+    if (!client) return null;
+
+    // 1. Total Acessos
+    const { count: totalViews } = await client.from("analytics_pageviews").select("*", { count: "exact", head: true });
+
+    // 2. Dispositivos Mobile vs Desktop
+    const { data: pageviews } = await client.from("analytics_pageviews").select("device_type, user_agent");
+    const uniqueDevices = pageviews ? new Set(pageviews.map(p => p.user_agent)).size : 0;
+
+    // 3. Total Preenchimentos / Leads
+    const { count: totalLeads, data: leadsList } = await client.from("leads").select("*", { count: "exact" }).order("created_at", { ascending: false });
+
+    return {
+      totalViews: totalViews || 0,
+      uniqueDevices: uniqueDevices || 0,
+      totalLeads: totalLeads || 0,
+      leadsList: leadsList || []
+    };
+  } catch (err) {
+    console.error("Erro ao buscar estatísticas do Supabase:", err);
+    return null;
+  }
+}
+
 // Exportar para Node ou escopo global
 if (typeof module !== "undefined" && module.exports) {
-  module.exports = { SUPABASE_CONFIG, getSupabaseClient, saveLeadToSupabase };
+  module.exports = { SUPABASE_CONFIG, getSupabaseClient, saveLeadToSupabase, trackPageviewSupabase, fetchDashboardDataFromSupabase };
 } else {
   window.SUPABASE_CONFIG = SUPABASE_CONFIG;
   window.saveLeadToSupabase = saveLeadToSupabase;
+  window.trackPageviewSupabase = trackPageviewSupabase;
+  window.fetchDashboardDataFromSupabase = fetchDashboardDataFromSupabase;
 }

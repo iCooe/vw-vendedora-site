@@ -23,15 +23,15 @@
 
 ---
 
-## 🟡 FASE 3: Sincronização da Dashboard em Tempo Real
-- [ ] Conectar os indicadores de métricas da Dashboard às tabelas `analytics_pageviews` e `leads` do Supabase.
-- [ ] Exibir logs em tempo real na tabela de atividades da Dashboard.
-- [ ] Ponto de Restauração: `CP-003-DASHBOARD-SUPABASE-SYNC`.
+## 🟢 FASE 3: Sincronização da Dashboard em Tempo Real (STATUS: CONCLUÍDA)
+- [x] Rastreamento de acessos e dispositivos salvos na tabela `analytics_pageviews` do Supabase.
+- [x] Indicadores da Dashboard sincronizados diretamente com o Supabase em tempo real.
+- [x] Ponto de Restauração: `CP-003-DASHBOARD-SUPABASE-SYNC` (`v1.2-dashboard-sync`).
 
 ---
 
-## 🟣 FASE 4: Verificação Final, Testes & Deploy de Produção
+## 🟣 FASE 4: Verificação Final, Testes & Deploy de Produção (STATUS: EM ANDAMENTO)
 - [ ] Teste end-to-end de inserção de lead e conferência no painel Supabase.
 - [ ] Auditoria de segurança e validação das regras `[M]` do Padrão Universal.
-- [ ] Deploy atualizado no Surge Cloud (`https://miriane-alves-vw-brasilia.surge.sh`).
+- [ ] Deploy de produção finalizado no Surge Cloud (`https://miriane-alves-vw-brasilia.surge.sh`).
 - [ ] Ponto de Restauração Final: `CP-004-PRODUCTION-RELEASE-V2`.

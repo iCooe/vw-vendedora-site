@@ -147,8 +147,11 @@ let hiddenPasswordsState = {};
 
 // INICIALIZAÇÃO AO CARREGAR O DOM
 document.addEventListener("DOMContentLoaded", () => {
-  // Registrar visualização de página automaticamente ao entrar na Landing
+  // Registrar visualização de página automaticamente ao entrar na Landing (Local + Supabase)
   trackPageView();
+  if (typeof trackPageviewSupabase === "function") {
+    trackPageviewSupabase();
+  }
 
   // Renderizar a Landing Page
   renderCarsGrid(VEHICLES_DATA);
@@ -624,23 +627,32 @@ function openWhatsAppLink(message) {
 /* ==========================================================
    DASHBOARD FUNCTIONS (RENDERIZAÇÃO E MONITORAMENTO)
    ========================================================== */
-function renderDashboard() {
-  // 1. Atualizar KPIs principais
+async function renderDashboard() {
+  // 1. Tentar buscar dados consolidados do Supabase
+  if (typeof fetchDashboardDataFromSupabase === "function") {
+    const supabaseStats = await fetchDashboardDataFromSupabase();
+    if (supabaseStats) {
+      if (supabaseStats.totalViews > 0) trackerState.pageViews = supabaseStats.totalViews;
+      if (supabaseStats.totalLeads > 0) trackerState.simulations = supabaseStats.totalLeads;
+    }
+  }
+
+  // 2. Atualizar KPIs principais
   document.getElementById("kpi-page-views").textContent = trackerState.pageViews.toLocaleString("pt-BR");
   document.getElementById("kpi-whatsapp-clicks").textContent = trackerState.whatsappClicks.toLocaleString("pt-BR");
   document.getElementById("kpi-video-views").textContent = trackerState.videoViews.toLocaleString("pt-BR");
   document.getElementById("kpi-simulations").textContent = trackerState.simulations.toLocaleString("pt-BR");
 
-  // 2. Renderizar Tabela de Usuários & Acessos
+  // 3. Renderizar Tabela de Usuários & Acessos
   renderUsersTable();
 
-  // 3. Renderizar Conversões por Botão de Ação
+  // 4. Renderizar Conversões por Botão de Ação
   renderConversionChannels();
 
-  // 4. Renderizar Dispositivos & Origem do Tráfego
+  // 5. Renderizar Dispositivos & Origem do Tráfego
   renderTrafficDistribution();
 
-  // 5. Renderizar Feed de Atividade ao Vivo
+  // 6. Renderizar Feed de Atividade ao Vivo
   renderLiveActivityFeed();
 }
 

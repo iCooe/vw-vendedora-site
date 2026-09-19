@@ -8,20 +8,22 @@
 - [x] Criação das variáveis de ambiente `.env` com as chaves do projeto Supabase **Miriane Alves**.
 - [x] Criação do módulo de conexão `supabase-client.js`.
 - [x] Criação do script DDL `schema.sql` com as tabelas `leads`, `analytics_pageviews` e `system_checkpoints`.
-- [x] Ponto de Restauração: `CP-001-UNIVERSAL-SUPABASE-INIT`.
+- [x] Ponto de Restauração: `CP-001-UNIVERSAL-SUPABASE-INIT` (`v1.0-universal-init`).
 
 ---
 
-## 🟡 FASE 2: Conexão Nível Dados (Leads & UTM Tracking no Supabase)
-- [ ] Conectar o formulário de Cotação do Usado (`#trade-in-form`) ao Supabase (`leads`).
-- [ ] Gravar campos: `marca__modelo_do_seu_carro`, `ano`, `quilometragem_km`, `qual_volkswagen_voc_quer_comprar`, `valor_pretendido_da_parcela`.
-- [ ] Gravar parâmetros UTMs de anúncios (`utm_source`, `utm_medium`, `utm_campaign`).
-- [ ] Manter envio FormSubmit + WhatsApp como canais de redundância em caso de oscilação de rede.
-- [ ] Ponto de Restauração: `CP-002-SUPABASE-LEADS-CONNECTED`.
+## 🟢 FASE 2: Conexão Nível Dados (Leads & UTM Tracking no Supabase) (STATUS: CONCLUÍDA)
+- [x] Incluída a SDK do Supabase no `index.html`.
+- [x] Conectado o formulário de Cotação do Usado (`#trade-in-form`) ao Supabase (`leads`).
+- [x] Gravação de todos os campos: modelo do usado, ano, quilometragem, VW desejado e **valor pretendido da parcela**.
+- [x] Captura automática de parâmetros UTMs de anúncios (`utm_source`, `utm_medium`, `utm_campaign`).
+- [x] Mantido FormSubmit + WhatsApp como canais de contingência.
+- [x] Deploy atualizado no Surge Cloud (`https://miriane-alves-vw-brasilia.surge.sh`).
+- [x] Ponto de Restauração: `CP-002-SUPABASE-LEADS-CONNECTED` (`v1.1-leads-supabase`).
 
 ---
 
-## 🔵 FASE 3: Sincronização da Dashboard em Tempo Real
+## 🟡 FASE 3: Sincronização da Dashboard em Tempo Real
 - [ ] Conectar os indicadores de métricas da Dashboard às tabelas `analytics_pageviews` e `leads` do Supabase.
 - [ ] Exibir logs em tempo real na tabela de atividades da Dashboard.
 - [ ] Ponto de Restauração: `CP-003-DASHBOARD-SUPABASE-SYNC`.

@@ -361,7 +361,12 @@ function setupEventListeners() {
     });
   }
 
-  // Formulario Avaliação do Usado com integração FormSubmit
+function getUrlParam(name) {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(name) || "";
+}
+
+  // Formulario Avaliação do Usado com integração Supabase + FormSubmit + WhatsApp
   const tradeInForm = document.getElementById("trade-in-form");
   if (tradeInForm) {
     tradeInForm.addEventListener("submit", (e) => {
@@ -372,9 +377,25 @@ function setupEventListeners() {
       const targetCar = document.getElementById("trade-target").value;
       const installment = document.getElementById("trade-installment") ? document.getElementById("trade-installment").value : "";
 
+      const leadData = {
+        model,
+        year,
+        km,
+        targetCar,
+        installment,
+        utmSource: getUrlParam("utm_source"),
+        utmMedium: getUrlParam("utm_medium"),
+        utmCampaign: getUrlParam("utm_campaign")
+      };
+
       trackAction("btn_tradein_send", `Solicitação de Avaliação do Usado: ${model} (${year}) - Parcela: ${installment}`);
 
-      // Envio automático para o sistema/email do FormSubmit
+      // 1. Gravacao em Nuvem no Supabase Miriane Alves
+      if (typeof saveLeadToSupabase === "function") {
+        saveLeadToSupabase(leadData);
+      }
+
+      // 2. Envio automatico de contingencia (FormSubmit)
       const fd = new FormData(tradeInForm);
       fetch("https://formsubmit.co/ajax/cleitonoliveira9577%40gmail.com", {
         method: "POST",
@@ -382,6 +403,7 @@ function setupEventListeners() {
         headers: { "Accept": "application/json" }
       }).catch(err => console.log("FormSubmit lead enviado:", err));
 
+      // 3. Abertura do WhatsApp da Consultora
       const message = `Olá ${CONSULTANT_CONFIG.name}! Gostaria de *Avaliar meu Veículo Usado na Troca*:\n\n🚙 *Meu Carro Atual:* ${model} (${year})\n🛣️ *Km:* ${km} km\n🎯 *Interesse no VW:* ${targetCar}\n💳 *Parcela Pretendida:* ${installment}\n\nPode fazer uma cotação para mim?`;
       openWhatsAppLink(message);
     });

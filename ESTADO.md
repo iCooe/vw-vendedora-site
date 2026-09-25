@@ -5,14 +5,38 @@
 ---
 
 ## 📌 Estado Atual do Projeto
-- **Versão Atual:** `v3.5-clean-deliveries`
-- **Último Checkpoint:** `CP-013-REMOVE-PLATE-BADGES`
+- **Versão Atual:** `v3.6-deliveries-slider`
+- **Último Checkpoint:** `CP-014-DELIVERIES-CAROUSEL-SLIDER`
 - **Projeto Supabase:** Miriane Alves / Projeto iCooe (`https://jrleyeoubalefjzgudcx.supabase.co`)
-- **Status:** Remoção total dos selos/plaquinhas de sobreposição das placas de veículos. Fotos limpas, com enquadramento natural e preservação de proporção. Publicado no Surge Cloud.
+- **Status:** Conversão da galeria de Prova Social em Carrossel/Slide interativo contendo as 19 fotos de entregas. Economia de espaço vertical, botões de navegação, suporte a touch/swipe no mobile e indicadores dinâmicos. Publicado no Surge Cloud.
 
 ---
 
 ## 📜 Histórico de Checkpoints (Append-Only)
+
+### [CP-014-DELIVERIES-CAROUSEL-SLIDER] — 24/09/2026
+- **Data/Hora:** 2026-09-24 23:40:00 (UTC-3)
+- **Autor da Autorização:** Usuário (via chat: *"na prova social, acho que ficaria melhor os imagens em slide... ocuparia menos espaços"*)
+- **Resumo:**
+  - Transformada a galeria estática de entregas em um **Carrossel/Slide Interativo**.
+  - Exibição de 3 cards por página no desktop, 2 no tablet e 1 no mobile.
+  - Implementados botões de seta com efeito glow em azul cyan VW, suporte completo a arrastar/deslizar com o dedo (touch swipe) em smartphones e indicadores numéricos/dots dinâmicos.
+  - Redução drástica do espaço vertical na página.
+  - Deploy atualizado publicado no Surge Cloud.
+- **Arquivos Criados/Modificados:**
+  - `styles.css` [MODIFY]
+  - `app.js` [MODIFY]
+  - `index.html` [MODIFY]
+  - `traco-1.html` [MODIFY]
+  - `ESTADO.md` [MODIFY]
+  - `FASES.md` [MODIFY]
+- **Commit/Tag Git:** `v3.6-deliveries-slider`
+- **Instruções de Reversão (Rollback):**
+  ```bash
+  git checkout v3.6-deliveries-slider
+  ```
+
+---
 
 ### [CP-013-REMOVE-PLATE-BADGES] — 24/09/2026
 - **Data/Hora:** 2026-09-24 23:25:00 (UTC-3)

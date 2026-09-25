@@ -981,3 +981,103 @@ function closeWAPopup() {
     popupCard.classList.add("hidden-popup");
   }
 }
+
+/* ==========================================================
+   CARROSSEL DE PROVA SOCIAL (ENTREGAS REALIZADAS EM BRASÍLIA)
+   ========================================================== */
+function initDeliveriesSlider() {
+  const track = document.getElementById("deliveries-slider-track");
+  const prevBtn = document.getElementById("btn-delivery-prev");
+  const nextBtn = document.getElementById("btn-delivery-next");
+  const dotsContainer = document.getElementById("deliveries-dots");
+
+  if (!track || !prevBtn || !nextBtn) return;
+
+  const cards = track.querySelectorAll(".delivery-card");
+  const totalCards = cards.length;
+  if (!totalCards) return;
+
+  let currentIndex = 0;
+
+  function getCardsPerView() {
+    if (window.innerWidth <= 600) return 1;
+    if (window.innerWidth <= 992) return 2;
+    return 3;
+  }
+
+  function getMaxIndex() {
+    return Math.max(0, totalCards - getCardsPerView());
+  }
+
+  function updateSlider() {
+    const cardWidth = cards[0].getBoundingClientRect().width + 20; // 20px gap
+    const maxIdx = getMaxIndex();
+    if (currentIndex > maxIdx) currentIndex = maxIdx;
+
+    track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+
+    // Render / Update Dots
+    if (dotsContainer) {
+      dotsContainer.innerHTML = "";
+      for (let i = 0; i <= maxIdx; i++) {
+        const dot = document.createElement("span");
+        dot.className = `slider-dot ${i === currentIndex ? 'active' : ''}`;
+        dot.setAttribute("title", `Ir para slide ${i + 1}`);
+        dot.addEventListener("click", () => {
+          currentIndex = i;
+          updateSlider();
+        });
+        dotsContainer.appendChild(dot);
+      }
+    }
+  }
+
+  prevBtn.addEventListener("click", () => {
+    const maxIdx = getMaxIndex();
+    currentIndex = currentIndex > 0 ? currentIndex - 1 : maxIdx;
+    updateSlider();
+  });
+
+  nextBtn.addEventListener("click", () => {
+    const maxIdx = getMaxIndex();
+    currentIndex = currentIndex < maxIdx ? currentIndex + 1 : 0;
+    updateSlider();
+  });
+
+  // Touch Swipe Support for Mobile
+  let startX = 0;
+  let currentX = 0;
+  let isDragging = false;
+
+  track.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+    isDragging = true;
+  }, { passive: true });
+
+  track.addEventListener("touchmove", (e) => {
+    if (!isDragging) return;
+    currentX = e.touches[0].clientX;
+  }, { passive: true });
+
+  track.addEventListener("touchend", () => {
+    if (!isDragging) return;
+    isDragging = false;
+    const diffX = startX - currentX;
+    const maxIdx = getMaxIndex();
+    if (Math.abs(diffX) > 40) {
+      if (diffX > 0) {
+        currentIndex = currentIndex < maxIdx ? currentIndex + 1 : 0;
+      } else {
+        currentIndex = currentIndex > 0 ? currentIndex - 1 : maxIdx;
+      }
+      updateSlider();
+    }
+  });
+
+  window.addEventListener("resize", updateSlider);
+  updateSlider();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  initDeliveriesSlider();
+});

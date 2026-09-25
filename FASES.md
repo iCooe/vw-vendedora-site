@@ -47,4 +47,5 @@
 - [x] Tratamento de 19 fotos de entregas de `C:\Users\Cleiton\Pictures\Screenshots` (remoção de textos do Instagram, tarjamento de placas com selo oficial e proporção 600x700px).
 - [x] Inserção da Seção Prova Social: Entregas Realizadas em Brasília no site.
 - [x] Otimização matemática de proporção de aspecto (Aspect Ratio Fit) eliminando qualquer distorção visual em fotos de pessoas.
-- [x] Ponto de Restauração: `CP-012-FIX-ASPECT-RATIO-DELIVERIES` (`v3.4-aspect-ratio-fix`).
+- [x] Remoção dos selos/plaquinhas de sobreposição das placas de veículos mantendo imagens 100% limpas e originais.
+- [x] Ponto de Restauração: `CP-013-REMOVE-PLATE-BADGES` (`v3.5-clean-deliveries`).

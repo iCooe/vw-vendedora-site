@@ -5,14 +5,34 @@
 ---
 
 ## 📌 Estado Atual do Projeto
-- **Versão Atual:** `v3.4-aspect-ratio-fix`
-- **Último Checkpoint:** `CP-012-FIX-ASPECT-RATIO-DELIVERIES`
+- **Versão Atual:** `v3.5-clean-deliveries`
+- **Último Checkpoint:** `CP-013-REMOVE-PLATE-BADGES`
 - **Projeto Supabase:** Miriane Alves / Projeto iCooe (`https://jrleyeoubalefjzgudcx.supabase.co`)
-- **Status:** Correção de proporção (aspect ratio fit) aplicada a todas as fotos de entregas na galeria de Prova Social. Pessoas e veículos 100% naturais sem distorção ou alongamento vertical. Publicado no Surge Cloud.
+- **Status:** Remoção total dos selos/plaquinhas de sobreposição das placas de veículos. Fotos limpas, com enquadramento natural e preservação de proporção. Publicado no Surge Cloud.
 
 ---
 
 ## 📜 Histórico de Checkpoints (Append-Only)
+
+### [CP-013-REMOVE-PLATE-BADGES] — 24/09/2026
+- **Data/Hora:** 2026-09-24 23:25:00 (UTC-3)
+- **Autor da Autorização:** Usuário (via chat: *"chat essas plaquinha que escondem as placas quero que retire, não ficou bom não."*)
+- **Resumo:**
+  - Removidos todos os selos/plaquinhas de sobreposição desenhados sobre as placas dos veículos.
+  - Mantidos os recortes limpos para eliminação dos textos de stories do Instagram e botões de reação.
+  - Preservada a otimização de proporção natural (Aspect Ratio Fit).
+  - Deploy atualizado publicado no Surge Cloud.
+- **Arquivos Criados/Modificados:**
+  - `assets/deliveries/entrega_01.jpg` até `entrega_19.jpg` [MODIFY]
+  - `ESTADO.md` [MODIFY]
+  - `FASES.md` [MODIFY]
+- **Commit/Tag Git:** `v3.5-clean-deliveries`
+- **Instruções de Reversão (Rollback):**
+  ```bash
+  git checkout v3.5-clean-deliveries
+  ```
+
+---
 
 ### [CP-012-FIX-ASPECT-RATIO-DELIVERIES] — 24/09/2026
 - **Data/Hora:** 2026-09-24 23:15:00 (UTC-3)

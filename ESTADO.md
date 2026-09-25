@@ -5,14 +5,37 @@
 ---
 
 ## 📌 Estado Atual do Projeto
-- **Versão Atual:** `v3.1-seo-subpage`
-- **Último Checkpoint:** `CP-009-SEO-DUPLICATED-SUBPAGE`
+- **Versão Atual:** `v3.2-seo-as-primary`
+- **Último Checkpoint:** `CP-010-PROMOTE-SEO-TO-INDEX`
 - **Projeto Supabase:** Miriane Alves / Projeto iCooe (`https://jrleyeoubalefjzgudcx.supabase.co`)
-- **Status:** Subpágina `traco-1.html` criada com SEO 360 & GEO Master Playbook; `index.html` mantido intocado. Publicado no Surge Cloud.
+- **Status:** Página principal `index.html` promovida para a versão com SEO 360 & GEO Master Playbook. Página original mantida como secundária em `pagina-original.html`. Publicado no Surge Cloud.
 
 ---
 
 ## 📜 Histórico de Checkpoints (Append-Only)
+
+### [CP-010-PROMOTE-SEO-TO-INDEX] — 24/09/2026
+- **Data/Hora:** 2026-09-24 22:13:00 (UTC-3)
+- **Autor da Autorização:** Usuário (via chat: *"A página que a gente acabou de criar, que é a traco-1, ela deve se tornar a principal e a outra, secundária..."*)
+- **Resumo:**
+  - Versão otimizada com Playbook Master de SEO 360 & GEO promovida para a página principal (`index.html`).
+  - Versão original sem otimizações preservada como página secundária em `pagina-original.html`.
+  - Canonical URL, Open Graph URL e Schema.org JSON-LD atualizados para apontar para a raiz `https://miriane-alves-vw-brasilia.surge.sh/`.
+  - Arquivo `sitemap.xml` atualizado com a nova hierarquia de URLs.
+  - Deploy publicado em produção no Surge Cloud (`https://miriane-alves-vw-brasilia.surge.sh`).
+- **Arquivos Criados/Modificados:**
+  - `index.html` [MODIFY]
+  - `pagina-original.html` [NEW]
+  - `sitemap.xml` [MODIFY]
+  - `ESTADO.md` [MODIFY]
+  - `FASES.md` [MODIFY]
+- **Commit/Tag Git:** `v3.2-seo-as-primary`
+- **Instruções de Reversão (Rollback):**
+  ```bash
+  git checkout v3.2-seo-as-primary
+  ```
+
+---
 
 ### [CP-009-SEO-DUPLICATED-SUBPAGE] — 24/09/2026
 - **Data/Hora:** 2026-09-24 21:55:00 (UTC-3)

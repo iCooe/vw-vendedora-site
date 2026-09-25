@@ -43,4 +43,5 @@
 - [x] Duplicação para `traco-1.html` com otimização SEO 360 & GEO (Meta tags, Open Graph, Schema.org AutoDealer + FAQPage, Keywords Locais de Brasília/DF).
 - [x] Criação de `sitemap.xml` e `robots.txt` no root.
 - [x] Publicação no Surge Cloud (`https://miriane-alves-vw-brasilia.surge.sh/traco-1.html`).
-- [x] Ponto de Restauração: `CP-009-SEO-DUPLICATED-SUBPAGE` (`v3.1-seo-subpage`).
+- [x] Promoção de `traco-1.html` para página principal (`index.html`), mantendo a original em `pagina-original.html`.
+- [x] Ponto de Restauração: `CP-010-PROMOTE-SEO-TO-INDEX` (`v3.2-seo-as-primary`).

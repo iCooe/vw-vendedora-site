@@ -5,14 +5,34 @@
 ---
 
 ## 📌 Estado Atual do Projeto
-- **Versão Atual:** `v3.9-fleet-slider`
-- **Último Checkpoint:** `CP-017-FLEET-CAROUSEL-SLIDER`
+- **Versão Atual:** `v4.0-remove-approval-kw`
+- **Último Checkpoint:** `CP-018-REMOVE-APPROVAL-KW`
 - **Projeto Supabase:** Miriane Alves / Projeto iCooe (`https://jrleyeoubalefjzgudcx.supabase.co`)
-- **Status:** Conversão do catálogo da Frota Volkswagen (Showroom de Veículos) em Carrossel/Slide Interativo com suporte a touch swipe, botões de seta e indicadores dinâmicos. Publicado no Surge Cloud.
+- **Status:** Remoção do selo/destaque "Aprovação em 15 Minutos" da barra de palavras-chave da página principal e subpágina. Publicado no Surge Cloud.
 
 ---
 
 ## 📜 Histórico de Checkpoints (Append-Only)
+
+### [CP-018-REMOVE-APPROVAL-KW] — 25/09/2026
+- **Data/Hora:** 2026-09-25 00:15:00 (UTC-3)
+- **Autor da Autorização:** Usuário (via chat: *"remova "aprovação em 15 minutos"*)
+- **Resumo:**
+  - Removido o item `<div class="kw-item">Aprovação em 15 Minutos</div>` da barra superior de diferenciais/gatilhos em `index.html` e `traco-1.html`.
+  - Mantidos os diferenciais: *Bônus de Fábrica*, *Plano Sempre Novo VW*, *Atendimento VIP 5 Estrelas* e *Descontos CNPJ & Produtor Rural*.
+  - Deploy re-publicado no Surge Cloud.
+- **Arquivos Criados/Modificados:**
+  - `index.html` [MODIFY]
+  - `traco-1.html` [MODIFY]
+  - `ESTADO.md` [MODIFY]
+  - `FASES.md` [MODIFY]
+- **Commit/Tag Git:** `v4.0-remove-approval-kw`
+- **Instruções de Reversão (Rollback):**
+  ```bash
+  git checkout v4.0-remove-approval-kw
+  ```
+
+---
 
 ### [CP-017-FLEET-CAROUSEL-SLIDER] — 25/09/2026
 - **Data/Hora:** 2026-09-25 00:10:00 (UTC-3)

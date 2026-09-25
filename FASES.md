@@ -49,6 +49,8 @@
 - [x] Otimização matemática de proporção de aspecto (Aspect Ratio Fit) eliminando qualquer distorção visual em fotos de pessoas.
 - [x] Remoção dos selos/plaquinhas de sobreposição das placas de veículos mantendo imagens 100% limpas e originais.
 - [x] Conversão do catálogo da Frota Volkswagen (Showroom) em Carrossel/Slide Interativo com botões de navegação, touch swipe e sincronização com os filtros de categoria.
-- [x] Ponto de Restauração: `CP-017-FLEET-CAROUSEL-SLIDER` (`v3.9-fleet-slider`).
+- [x] Remoção do item "Aprovação em 15 Minutos" da barra superior de destaques/diferenciais.
+- [x] Ponto de Restauração: `CP-018-REMOVE-APPROVAL-KW` (`v4.0-remove-approval-kw`).
+
 
 

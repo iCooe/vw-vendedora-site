@@ -5,14 +5,36 @@
 ---
 
 ## 📌 Estado Atual do Projeto
-- **Versão Atual:** `v2.3-taos-image`
-- **Último Checkpoint:** `CP-007-FIX-TAOS-IMAGE`
+- **Versão Atual:** `v3.1-seo-subpage`
+- **Último Checkpoint:** `CP-009-SEO-DUPLICATED-SUBPAGE`
 - **Projeto Supabase:** Miriane Alves / Projeto iCooe (`https://jrleyeoubalefjzgudcx.supabase.co`)
-- **Status:** Foto Oficial do Novo Volkswagen Taos Highline Atualizada em Produção
+- **Status:** Subpágina `traco-1.html` criada com SEO 360 & GEO Master Playbook; `index.html` mantido intocado. Publicado no Surge Cloud.
 
 ---
 
 ## 📜 Histórico de Checkpoints (Append-Only)
+
+### [CP-009-SEO-DUPLICATED-SUBPAGE] — 24/09/2026
+- **Data/Hora:** 2026-09-24 21:55:00 (UTC-3)
+- **Autor da Autorização:** Usuário (via chat: *"Pode executar. Assim que você finalizar, eu quero que você me envie os dois links..."*)
+- **Resumo:**
+  - Página original `index.html` mantida 100% intocada.
+  - Criada a subpágina `traco-1.html` aplicando a totalidade das otimizações do **Playbook Master de SEO 360 & GEO**: Meta Tags completas, Open Graph, Twitter Cards, Schema.org `AutoDealer` (LocalBusiness em SGCV Brasília) & `FAQPage` em JSON-LD, marcações semânticas e imagens alt com keywords locais.
+  - Criados os arquivos técnicos de indexação no root: `sitemap.xml` e `robots.txt`.
+  - Publicado o site atualizado no Surge Cloud (`https://miriane-alves-vw-brasilia.surge.sh`).
+- **Arquivos Criados/Modificados:**
+  - `traco-1.html` [NEW]
+  - `sitemap.xml` [NEW]
+  - `robots.txt` [NEW]
+  - `ESTADO.md` [MODIFY]
+  - `FASES.md` [MODIFY]
+- **Commit/Tag Git:** `v3.1-seo-subpage`
+- **Instruções de Reversão (Rollback):**
+  ```bash
+  git checkout v3.1-seo-subpage
+  ```
+
+---
 
 ### [CP-007-FIX-TAOS-IMAGE] — 19/09/2026
 - **Data/Hora:** 2026-09-19 11:01:00 (UTC-3)

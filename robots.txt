@@ -1,0 +1,8 @@
+# ROBOTS.TXT - VOLKSWAGEN BRASÍLIA CONSULTORA MIRIANE ALVES
+User-agent: *
+Allow: /
+Allow: /traco-1.html
+Allow: /assets/
+
+# SITEMAP OFICIAL
+Sitemap: https://miriane-alves-vw-brasilia.surge.sh/sitemap.xml

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- PAGINA PRINCIPAL ORIGINAL -->
+  <url>
+    <loc>https://miriane-alves-vw-brasilia.surge.sh/</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- SUBPAGINA OTIMIZADA COM PLAYBOOK MASTER DE SEO 360 -->
+  <url>
+    <loc>https://miriane-alves-vw-brasilia.surge.sh/traco-1.html</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://miriane-alves-vw-brasilia.surge.sh/assets/miriane_alves.jpg</image:loc>
+      <image:title>Miriane Alves Consultora Volkswagen Brasília</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://miriane-alves-vw-brasilia.surge.sh/assets/vw_nivus.jpg</image:loc>
+      <image:title>Volkswagen Nivus Highline 0km Brasília</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://miriane-alves-vw-brasilia.surge.sh/assets/vw_tcross.jpg</image:loc>
+      <image:title>Volkswagen T-Cross Highline 0km Brasília</image:title>
+    </image:image>
+  </url>
+
+</urlset>

@@ -5,14 +5,34 @@
 ---
 
 ## 📌 Estado Atual do Projeto
-- **Versão Atual:** `v3.6-deliveries-slider`
-- **Último Checkpoint:** `CP-014-DELIVERIES-CAROUSEL-SLIDER`
+- **Versão Atual:** `v3.7-remove-image-19`
+- **Último Checkpoint:** `CP-015-REMOVE-IMAGE-19`
 - **Projeto Supabase:** Miriane Alves / Projeto iCooe (`https://jrleyeoubalefjzgudcx.supabase.co`)
-- **Status:** Conversão da galeria de Prova Social em Carrossel/Slide interativo contendo as 19 fotos de entregas. Economia de espaço vertical, botões de navegação, suporte a touch/swipe no mobile e indicadores dinâmicos. Publicado no Surge Cloud.
+- **Status:** Remoção da 19ª imagem do carrossel de Prova Social. Mantidas 18 fotos de entregas 100% limpas e enquadradas. Publicado no Surge Cloud.
 
 ---
 
 ## 📜 Histórico de Checkpoints (Append-Only)
+
+### [CP-015-REMOVE-IMAGE-19] — 24/09/2026
+- **Data/Hora:** 2026-09-24 23:50:00 (UTC-3)
+- **Autor da Autorização:** Usuário (via chat: *"remova essa ultima imagem"*)
+- **Resumo:**
+  - Removido o card da 19ª imagem (`entrega_19.jpg`) do carrossel de Prova Social no `index.html` e `traco-1.html`.
+  - Mantidas 18 fotos de entregas de altíssima qualidade, com enquadramento natural e sem textos indesejados.
+  - Deploy atualizado publicado no Surge Cloud.
+- **Arquivos Criados/Modificados:**
+  - `index.html` [MODIFY]
+  - `traco-1.html` [MODIFY]
+  - `ESTADO.md` [MODIFY]
+  - `FASES.md` [MODIFY]
+- **Commit/Tag Git:** `v3.7-remove-image-19`
+- **Instruções de Reversão (Rollback):**
+  ```bash
+  git checkout v3.7-remove-image-19
+  ```
+
+---
 
 ### [CP-014-DELIVERIES-CAROUSEL-SLIDER] — 24/09/2026
 - **Data/Hora:** 2026-09-24 23:40:00 (UTC-3)

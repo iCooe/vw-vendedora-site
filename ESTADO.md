@@ -5,14 +5,39 @@
 ---
 
 ## 📌 Estado Atual do Projeto
-- **Versão Atual:** `v3.2-seo-as-primary`
-- **Último Checkpoint:** `CP-010-PROMOTE-SEO-TO-INDEX`
+- **Versão Atual:** `v3.3-proof-of-delivery`
+- **Último Checkpoint:** `CP-011-PROVA-SOCIAL-DELIVERIES`
 - **Projeto Supabase:** Miriane Alves / Projeto iCooe (`https://jrleyeoubalefjzgudcx.supabase.co`)
-- **Status:** Página principal `index.html` promovida para a versão com SEO 360 & GEO Master Playbook. Página original mantida como secundária em `pagina-original.html`. Publicado no Surge Cloud.
+- **Status:** Seção de Prova Social com galeria de 19 fotos de entregas reais tratadas (sem textos de Instagram e com tarjas/badges de proteção nas placas de veículos). Publicado no Surge Cloud.
 
 ---
 
 ## 📜 Histórico de Checkpoints (Append-Only)
+
+### [CP-011-PROVA-SOCIAL-DELIVERIES] — 24/09/2026
+- **Data/Hora:** 2026-09-24 23:02:00 (UTC-3)
+- **Autor da Autorização:** Usuário (via chat: *"na pasta e no diretório que eu estou te mandando, a gente tem todas as fotos de depoimento... você fizesse um tratamento de retirar os textos... e onde mostra placa de carro colocar como se tivesse borradinho..."*)
+- **Resumo:**
+  - Processadas as 19 fotos de entregas da pasta `C:\Users\Cleiton\Pictures\Screenshots`.
+  - Recorte (crop) cirúrgico para remoção de textos do Instagram Stories e botões de reação.
+  - Aplicação de selos/badges profissionais `VOLKSWAGEN BRASÍLIA - DF` sobre as placas dos veículos para total proteção de privacidade.
+  - Padronização em proporção uniforme `600x700px`.
+  - Inserção da seção **"Entregas Realizadas em Brasília - DF"** no `index.html` e `traco-1.html`.
+  - Deploy atualizado publicado no Surge Cloud.
+- **Arquivos Criados/Modificados:**
+  - `assets/deliveries/entrega_01.jpg` até `entrega_19.jpg` [NEW]
+  - `styles.css` [MODIFY]
+  - `index.html` [MODIFY]
+  - `traco-1.html` [MODIFY]
+  - `ESTADO.md` [MODIFY]
+  - `FASES.md` [MODIFY]
+- **Commit/Tag Git:** `v3.3-proof-of-delivery`
+- **Instruções de Reversão (Rollback):**
+  ```bash
+  git checkout v3.3-proof-of-delivery
+  ```
+
+---
 
 ### [CP-010-PROMOTE-SEO-TO-INDEX] — 24/09/2026
 - **Data/Hora:** 2026-09-24 22:13:00 (UTC-3)

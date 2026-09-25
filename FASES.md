@@ -44,4 +44,6 @@
 - [x] Criação de `sitemap.xml` e `robots.txt` no root.
 - [x] Publicação no Surge Cloud (`https://miriane-alves-vw-brasilia.surge.sh/traco-1.html`).
 - [x] Promoção de `traco-1.html` para página principal (`index.html`), mantendo a original em `pagina-original.html`.
-- [x] Ponto de Restauração: `CP-010-PROMOTE-SEO-TO-INDEX` (`v3.2-seo-as-primary`).
+- [x] Tratamento de 19 fotos de entregas de `C:\Users\Cleiton\Pictures\Screenshots` (remoção de textos do Instagram, tarjamento de placas com selo oficial e proporção 600x700px).
+- [x] Inserção da Seção Prova Social: Entregas Realizadas em Brasília no site.
+- [x] Ponto de Restauração: `CP-011-PROVA-SOCIAL-DELIVERIES` (`v3.3-proof-of-delivery`).

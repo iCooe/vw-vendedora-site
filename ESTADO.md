@@ -5,14 +5,34 @@
 ---
 
 ## 📌 Estado Atual do Projeto
-- **Versão Atual:** `v3.7-remove-image-19`
-- **Último Checkpoint:** `CP-015-REMOVE-IMAGE-19`
+- **Versão Atual:** `v3.8-filter-delivery-photos`
+- **Último Checkpoint:** `CP-016-FILTER-DELIVERY-PHOTOS`
 - **Projeto Supabase:** Miriane Alves / Projeto iCooe (`https://jrleyeoubalefjzgudcx.supabase.co`)
-- **Status:** Remoção da 19ª imagem do carrossel de Prova Social. Mantidas 18 fotos de entregas 100% limpas e enquadradas. Publicado no Surge Cloud.
+- **Status:** Remoção das fotos 06, 15 e 17 do carrossel de Prova Social por não apresentarem a consultora Miriane claramente na imagem. Mantidas 15 fotos de alta relevância com a Miriane presente. Publicado no Surge Cloud.
 
 ---
 
 ## 📜 Histórico de Checkpoints (Append-Only)
+
+### [CP-016-FILTER-DELIVERY-PHOTOS] — 24/09/2026
+- **Data/Hora:** 2026-09-24 23:59:00 (UTC-3)
+- **Autor da Autorização:** Usuário (via chat: *"remova as que ela não aparece na foto como a 15 a 6 e 17"*)
+- **Resumo:**
+  - Removidos os cards das entregas 06, 15 e 17 dos carrosséis em `index.html` e `traco-1.html`.
+  - Mantidas 15 fotos de entregas onde a consultora Miriane Alves aparece nitidamente e com destaque.
+  - Deploy re-publicado no Surge Cloud.
+- **Arquivos Criados/Modificados:**
+  - `index.html` [MODIFY]
+  - `traco-1.html` [MODIFY]
+  - `ESTADO.md` [MODIFY]
+  - `FASES.md` [MODIFY]
+- **Commit/Tag Git:** `v3.8-filter-delivery-photos`
+- **Instruções de Reversão (Rollback):**
+  ```bash
+  git checkout v3.8-filter-delivery-photos
+  ```
+
+---
 
 ### [CP-015-REMOVE-IMAGE-19] — 24/09/2026
 - **Data/Hora:** 2026-09-24 23:50:00 (UTC-3)

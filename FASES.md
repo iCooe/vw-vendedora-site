@@ -49,4 +49,6 @@
 - [x] Otimização matemática de proporção de aspecto (Aspect Ratio Fit) eliminando qualquer distorção visual em fotos de pessoas.
 - [x] Remoção dos selos/plaquinhas de sobreposição das placas de veículos mantendo imagens 100% limpas e originais.
 - [x] Conversão da galeria de Prova Social em Carrossel/Slide Interativo com suporte a touch swipe no celular, botões laterais e indicadores dinâmicos.
-- [x] Ponto de Restauração: `CP-014-DELIVERIES-CAROUSEL-SLIDER` (`v3.6-deliveries-slider`).
+- [x] Remoção da 19ª imagem e filtragem das imagens 06, 15 e 17 mantendo 15 fotos de alto impacto com a consultora Miriane.
+- [x] Ponto de Restauração: `CP-016-FILTER-DELIVERY-PHOTOS` (`v3.8-filter-delivery-photos`).
+

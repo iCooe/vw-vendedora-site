@@ -5,14 +5,38 @@
 ---
 
 ## 📌 Estado Atual do Projeto
-- **Versão Atual:** `v3.8-filter-delivery-photos`
-- **Último Checkpoint:** `CP-016-FILTER-DELIVERY-PHOTOS`
+- **Versão Atual:** `v3.9-fleet-slider`
+- **Último Checkpoint:** `CP-017-FLEET-CAROUSEL-SLIDER`
 - **Projeto Supabase:** Miriane Alves / Projeto iCooe (`https://jrleyeoubalefjzgudcx.supabase.co`)
-- **Status:** Remoção das fotos 06, 15 e 17 do carrossel de Prova Social por não apresentarem a consultora Miriane claramente na imagem. Mantidas 15 fotos de alta relevância com a Miriane presente. Publicado no Surge Cloud.
+- **Status:** Conversão do catálogo da Frota Volkswagen (Showroom de Veículos) em Carrossel/Slide Interativo com suporte a touch swipe, botões de seta e indicadores dinâmicos. Publicado no Surge Cloud.
 
 ---
 
 ## 📜 Histórico de Checkpoints (Append-Only)
+
+### [CP-017-FLEET-CAROUSEL-SLIDER] — 25/09/2026
+- **Data/Hora:** 2026-09-25 00:10:00 (UTC-3)
+- **Autor da Autorização:** Usuário (via chat: *"Chat na frota, prefiro que seja em slide"*)
+- **Resumo:**
+  - Transformado o Grid de Veículos da Frota Volkswagen em **Carrossel/Slide Interativo** (Desktop & Mobile).
+  - Exibição de 3 cards de carros no Desktop (>992px), 2 no Tablet (601-992px) e 1 no Mobile (<=600px).
+  - Adicionados botões de navegação lateral (Prev/Next), indicadores/dots dinâmicos de página e suporte total a gestos de arrastar/touch swipe no celular.
+  - Sincronização inteligente com os botões de filtro de categoria (Todos, SUVs, Hatches, Pickups).
+  - Deploy re-publicado no Surge Cloud.
+- **Arquivos Criados/Modificados:**
+  - `index.html` [MODIFY]
+  - `traco-1.html` [MODIFY]
+  - `styles.css` [MODIFY]
+  - `app.js` [MODIFY]
+  - `ESTADO.md` [MODIFY]
+  - `FASES.md` [MODIFY]
+- **Commit/Tag Git:** `v3.9-fleet-slider`
+- **Instruções de Reversão (Rollback):**
+  ```bash
+  git checkout v3.9-fleet-slider
+  ```
+
+---
 
 ### [CP-016-FILTER-DELIVERY-PHOTOS] — 24/09/2026
 - **Data/Hora:** 2026-09-24 23:59:00 (UTC-3)

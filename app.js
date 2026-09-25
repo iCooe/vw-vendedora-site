@@ -437,6 +437,8 @@ function getUrlParam(name) {
   }
 }
 
+let currentCarIndex = 0;
+
 function renderCarsGrid(vehicles) {
   const container = document.getElementById("cars-grid-container");
   if (!container) return;
@@ -481,56 +483,131 @@ function renderCarsGrid(vehicles) {
     </div>
   `).join("");
 
-  // Inicializar auto-slider no mobile
-  initMobileCarSlider();
+  // Inicializar o slider da frota
+  initCarsSlider();
 }
 
-/* MOBILE CAROUSEL AUTO-SLIDER (Animação de rolagem horizontal estilo formulário) */
-let mobileCarSliderInterval = null;
-let currentCarIndex = 0;
+/* CARROSSEL INTERATIVO DA FROTA DE VEÍCULOS (Desktop & Mobile) */
+function initCarsSlider() {
+  const track = document.getElementById("cars-grid-container");
+  const prevBtn = document.getElementById("btn-cars-prev");
+  const nextBtn = document.getElementById("btn-cars-next");
+  const dotsContainer = document.getElementById("cars-dots");
 
-function initMobileCarSlider() {
-  const container = document.getElementById("cars-grid-container");
-  if (!container) return;
+  if (!track || !prevBtn || !nextBtn) return;
 
-  if (mobileCarSliderInterval) {
-    clearInterval(mobileCarSliderInterval);
-    mobileCarSliderInterval = null;
-  }
-
-  const cards = container.querySelectorAll(".car-card");
-  if (!cards.length) return;
-
-  if (window.innerWidth > 768) {
-    cards.forEach(card => {
-      card.style.transform = "none";
-    });
+  const cards = track.querySelectorAll(".car-card");
+  const totalCards = cards.length;
+  if (!totalCards) {
+    if (dotsContainer) dotsContainer.innerHTML = "";
+    prevBtn.style.display = "none";
+    nextBtn.style.display = "none";
     return;
   }
 
-  currentCarIndex = 0;
-  cards.forEach(card => {
-    card.style.transform = "translateX(0%)";
+  function getCardsPerView() {
+    if (window.innerWidth <= 600) return 1;
+    if (window.innerWidth <= 992) return 2;
+    return 3;
+  }
+
+  function getMaxIndex() {
+    return Math.max(0, totalCards - getCardsPerView());
+  }
+
+  const maxIdx = getMaxIndex();
+  if (totalCards <= getCardsPerView()) {
+    prevBtn.style.display = "none";
+    nextBtn.style.display = "none";
+  } else {
+    prevBtn.style.display = "flex";
+    nextBtn.style.display = "flex";
+  }
+
+  if (currentCarIndex > maxIdx) currentCarIndex = maxIdx;
+
+  function updateCarsSlider() {
+    if (!cards[0]) return;
+    const cardWidth = cards[0].getBoundingClientRect().width + 20; // 20px gap
+    const currentMaxIdx = getMaxIndex();
+    if (currentCarIndex > currentMaxIdx) currentCarIndex = currentMaxIdx;
+
+    track.style.transform = `translateX(-${currentCarIndex * cardWidth}px)`;
+
+    // Render / Update Dots
+    if (dotsContainer) {
+      dotsContainer.innerHTML = "";
+      if (currentMaxIdx > 0) {
+        for (let i = 0; i <= currentMaxIdx; i++) {
+          const dot = document.createElement("span");
+          dot.className = `slider-dot ${i === currentCarIndex ? 'active' : ''}`;
+          dot.setAttribute("title", `Ir para slide ${i + 1}`);
+          dot.addEventListener("click", () => {
+            currentCarIndex = i;
+            updateCarsSlider();
+          });
+          dotsContainer.appendChild(dot);
+        }
+      }
+    }
+  }
+
+  // Clonar botões para remover ouvintes de clique duplicados ao re-filtrar
+  const newPrevBtn = prevBtn.cloneNode(true);
+  const newNextBtn = nextBtn.cloneNode(true);
+  if (prevBtn.parentNode) prevBtn.parentNode.replaceChild(newPrevBtn, prevBtn);
+  if (nextBtn.parentNode) nextBtn.parentNode.replaceChild(newNextBtn, nextBtn);
+
+  newPrevBtn.addEventListener("click", () => {
+    const currentMaxIdx = getMaxIndex();
+    currentCarIndex = currentCarIndex > 0 ? currentCarIndex - 1 : currentMaxIdx;
+    updateCarsSlider();
   });
 
-  mobileCarSliderInterval = setInterval(() => {
-    const activeCards = container.querySelectorAll(".car-card");
-    if (!activeCards || activeCards.length <= 1) return;
+  newNextBtn.addEventListener("click", () => {
+    const currentMaxIdx = getMaxIndex();
+    currentCarIndex = currentCarIndex < currentMaxIdx ? currentCarIndex + 1 : 0;
+    updateCarsSlider();
+  });
 
-    currentCarIndex = (currentCarIndex + 1) % activeCards.length;
+  // Touch Swipe Support para Mobile
+  let startX = 0;
+  let currentX = 0;
+  let isDragging = false;
 
-    // Desliza fisicamente todos os cards para a esquerda, trazendo o novo item vindo da direita
-    activeCards.forEach(card => {
-      card.style.transform = `translateX(-${currentCarIndex * 100}%)`;
-    });
-  }, 3000); // 3 segundos por card
+  track.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+    isDragging = true;
+  }, { passive: true });
+
+  track.addEventListener("touchmove", (e) => {
+    if (!isDragging) return;
+    currentX = e.touches[0].clientX;
+  }, { passive: true });
+
+  track.addEventListener("touchend", () => {
+    if (!isDragging) return;
+    isDragging = false;
+    const diffX = startX - currentX;
+    const currentMaxIdx = getMaxIndex();
+    if (Math.abs(diffX) > 40) {
+      if (diffX > 0) {
+        currentCarIndex = currentCarIndex < currentMaxIdx ? currentCarIndex + 1 : 0;
+      } else {
+        currentCarIndex = currentCarIndex > 0 ? currentCarIndex - 1 : currentMaxIdx;
+      }
+      updateCarsSlider();
+    }
+  });
+
+  window.removeEventListener("resize", updateCarsSlider);
+  window.addEventListener("resize", updateCarsSlider);
+
+  updateCarsSlider();
 }
 
-window.addEventListener("resize", () => {
-  initMobileCarSlider();
-});
-
 function filterCars(category) {
+  currentCarIndex = 0;
   if (category === "all") {
     renderCarsGrid(VEHICLES_DATA);
   } else {

@@ -240,9 +240,25 @@
           <button class="tab-btn" data-category="pickups"><i class="fa-solid fa-truck-pickup"></i> Pick-ups (Amarok V6)</button>
         </div>
 
-        <!-- GRID DE CARROS -->
-        <div class="cars-grid" id="cars-grid-container">
-          <!-- Renderizado via JavaScript -->
+        <!-- SLIDER DA FROTA DE VEÍCULOS -->
+        <div class="cars-slider-wrapper">
+          <button class="slider-btn btn-prev" id="btn-cars-prev" aria-label="Anterior">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+
+          <div class="cars-slider-track-container" id="cars-track-container">
+            <div class="cars-slider-track" id="cars-grid-container">
+              <!-- Renderizado via JavaScript -->
+            </div>
+          </div>
+
+          <button class="slider-btn btn-next" id="btn-cars-next" aria-label="Próximo">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+
+        <div class="slider-controls-bar">
+          <div class="slider-dots" id="cars-dots"></div>
         </div>
       </div>
     </section>

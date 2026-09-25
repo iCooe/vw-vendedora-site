@@ -46,4 +46,5 @@
 - [x] Promoção de `traco-1.html` para página principal (`index.html`), mantendo a original em `pagina-original.html`.
 - [x] Tratamento de 19 fotos de entregas de `C:\Users\Cleiton\Pictures\Screenshots` (remoção de textos do Instagram, tarjamento de placas com selo oficial e proporção 600x700px).
 - [x] Inserção da Seção Prova Social: Entregas Realizadas em Brasília no site.
-- [x] Ponto de Restauração: `CP-011-PROVA-SOCIAL-DELIVERIES` (`v3.3-proof-of-delivery`).
+- [x] Otimização matemática de proporção de aspecto (Aspect Ratio Fit) eliminando qualquer distorção visual em fotos de pessoas.
+- [x] Ponto de Restauração: `CP-012-FIX-ASPECT-RATIO-DELIVERIES` (`v3.4-aspect-ratio-fix`).

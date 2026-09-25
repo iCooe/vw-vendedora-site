@@ -5,14 +5,35 @@
 ---
 
 ## 📌 Estado Atual do Projeto
-- **Versão Atual:** `v3.3-proof-of-delivery`
-- **Último Checkpoint:** `CP-011-PROVA-SOCIAL-DELIVERIES`
+- **Versão Atual:** `v3.4-aspect-ratio-fix`
+- **Último Checkpoint:** `CP-012-FIX-ASPECT-RATIO-DELIVERIES`
 - **Projeto Supabase:** Miriane Alves / Projeto iCooe (`https://jrleyeoubalefjzgudcx.supabase.co`)
-- **Status:** Seção de Prova Social com galeria de 19 fotos de entregas reais tratadas (sem textos de Instagram e com tarjas/badges de proteção nas placas de veículos). Publicado no Surge Cloud.
+- **Status:** Correção de proporção (aspect ratio fit) aplicada a todas as fotos de entregas na galeria de Prova Social. Pessoas e veículos 100% naturais sem distorção ou alongamento vertical. Publicado no Surge Cloud.
 
 ---
 
 ## 📜 Histórico de Checkpoints (Append-Only)
+
+### [CP-012-FIX-ASPECT-RATIO-DELIVERIES] — 24/09/2026
+- **Data/Hora:** 2026-09-24 23:15:00 (UTC-3)
+- **Autor da Autorização:** Usuário (via chat: *"algumas imagens estão esticadas, e ficou ruim"*)
+- **Resumo:**
+  - Recalculado o algoritmo de corte e redimensionamento das fotos de entregas para **preservar a proporção de aspecto natural (Aspect Ratio Fit)** sem esticar ou achatar a imagem.
+  - Ajustado o CSS do contêiner `.delivery-img-wrap img` com `object-fit: cover; object-position: center top;` e altura ajustada de 350px.
+  - Rostos, corpos de clientes, a Consultora Miriane e os carros Volkswagen agora aparecem 100% proporcionais e naturais.
+  - Deploy atualizado publicado no Surge Cloud.
+- **Arquivos Criados/Modificados:**
+  - `assets/deliveries/entrega_01.jpg` até `entrega_19.jpg` [MODIFY]
+  - `styles.css` [MODIFY]
+  - `ESTADO.md` [MODIFY]
+  - `FASES.md` [MODIFY]
+- **Commit/Tag Git:** `v3.4-aspect-ratio-fix`
+- **Instruções de Reversão (Rollback):**
+  ```bash
+  git checkout v3.4-aspect-ratio-fix
+  ```
+
+---
 
 ### [CP-011-PROVA-SOCIAL-DELIVERIES] — 24/09/2026
 - **Data/Hora:** 2026-09-24 23:02:00 (UTC-3)

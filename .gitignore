@@ -1,0 +1,15 @@
+# Node & Dependencies
+node_modules/
+package-lock.json
+
+# Environment variables
+.env
+.env.local
+
+# Temporary scratch & build artifacts
+scratch/
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db

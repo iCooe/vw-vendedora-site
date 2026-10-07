@@ -79,3 +79,12 @@
 ## PR-019 — 2026-10-02 — `.gitignore` e publicação no GitHub/Netlify
 - **Commit:** `32623bc` · **Tipo:** adicionado
 - **Adicionado:** `.gitignore` (node_modules, scratch, .env); repositório `iCooe/vw-vendedora-site`; deploy Netlify a partir de `main`.
+
+## PR-020 — 2026-10-07 — Adoção do Padrão v3.5 + fim da leitura pública de leads
+- **Commit:** `2050d08` · **Tag:** `v4.1-padrao-v3.5` · **Fase:** F7 · **Tipo:** modificado | adicionado | removido
+- **Savepoint anterior:** tag `savepoint-pre-padrao-v3.5` (`32623bc`)
+- **Funcionalidades tocadas:** governança, painel (estatísticas), banco (RLS)
+- **Adicionado:** `README.md`, `.env.example`, `.npmrc` (ignore-scripts), `.nvmrc`, `GEMINI.md`/`CLAUDE.md` (apontadores), `docs/adr/ADR-001` (stack), `docs/adr/ADR-002` (RLS), `docs/CORRECOES.md`, este ledger, `supabase/migrations/001_fechar_leitura_publica.sql` (remove o SELECT público e cria `dashboard_stats()`).
+- **Modificado:** `AGENTS.md` (template v3.5, com pendências declaradas); `ESTADO.md` (enxuto, com Serviços externos, Capacidade e Evidências); `supabase-client.js` (painel: 3 leituras de tabela → 1 `rpc('dashboard_stats')`); `FASES.md` → `docs/FASES.md`; `schema.sql` → `supabase/migrations/000_schema_inicial.sql`.
+- **Removido:** `.env` e `scratch/test-*.js` do rastreamento git (continuam no disco). Motivo: SECRETS-GITIGNORE-01. A busca de `leadsList` no painel também saiu: baixava dados pessoais que nunca eram exibidos.
+- **Estado verificado neste ponto:** `node --check` OK em `app.js`/`supabase-client.js`; `audit.sh`: de 7✅ 4❌ 9⚠️ para 19✅ 1❌ 1⚠️ (o ❌ restante é SECRETS-LEAK-01, aceito no ADR-002). Migration 001 **ainda não aplicada** no banco.

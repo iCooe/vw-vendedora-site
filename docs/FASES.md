@@ -1,4 +1,16 @@
-# FASES.md — Roteiro de Desenvolvimento Vertical (Padrão Universal v3.2)
+# FASES — Site Miriane Alves VW (Padrão Universal v3.5)
+> Regra (CTX-FASE-01): cada fase cabe em UMA sessão e fecha com checkpoint (commit + ESTADO.md + PR-NNN).
+
+| Fase | Entrega verificável | Status |
+|---|---|---|
+| F1–F4 | Governança, leads no Supabase, painel, produção | ✅ |
+| F5 | SEO 360/GEO, prova social, carrosséis | ✅ |
+| F6 | GitHub + Netlify | ✅ |
+| F7-A | Docs no formato v3.5 (README, docs/, ledger, ADRs, .env fora do git) | ✅ |
+| F7-B | Leads sem leitura pública + painel por `dashboard_stats` | 🟡 código pronto; falta aplicar a migration 001 |
+| F7-C | Keep-alive Supabase, `_headers` Netlify, CI com `audit.sh` | ⬜ aguarda aprovação |
+
+Detalhe histórico das fases 1–5 abaixo (registro original).
 
 ---
 

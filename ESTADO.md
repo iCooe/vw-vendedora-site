@@ -1,270 +1,44 @@
-# ESTADO.md — Ledger de Memória e Pontos de Restauração (Restore Points)
+# ESTADO — Site Miriane Alves VW
+> Atualizado em: 2026-10-07 · Fase atual: F7 — Adequação ao Padrão v3.5
+> Teste de validade: uma sessão nova retoma o trabalho lendo SÓ `AGENTS.md` + este arquivo.
+> Histórico completo de checkpoints: `docs/PONTOS-DE-RESTAURACAO.md` (antes ficava aqui).
 
-> **Regra CTX-RESTORE-01:** Este arquivo é um ledger append-only. Cada alteração aprovada gera um Ponto de Restauração com instruções exatas de reversão via Git.
+## Último checkpoint
+- PR-020 — Adequação ao Padrão v3.5 (Blocos A + B) — commit no ledger.
+- Savepoint antes da mudança: tag `savepoint-pre-padrao-v3.5` (`32623bc`).
+- Estado do sistema: site no ar (Netlify + Surge). O painel já usa `rpc('dashboard_stats')`; enquanto a migration 001 não for aplicada, ele mostra os números locais (comportamento seguro).
 
----
+## Decisões desta sessão
+- Padrão de engenharia atualizado de v3.2 para **v3.5**. Porte: `app-simples`.
+- Leitura pública de leads removida; o painel lê só contagens → `docs/adr/ADR-002`.
+- Chave publishable no histórico: não rotacionar (pública por design) → ADR-002.
+- Regras de infraestrutura não aplicáveis (sem servidor próprio) → `docs/adr/ADR-001`.
 
-## 📌 Estado Atual do Projeto
-- **Versão Atual:** `v4.0-remove-approval-kw`
-- **Último Checkpoint:** `CP-018-REMOVE-APPROVAL-KW`
-- **Projeto Supabase:** Miriane Alves / Projeto iCooe (`https://jrleyeoubalefjzgudcx.supabase.co`)
-- **Status:** Remoção do selo/destaque "Aprovação em 15 Minutos" da barra de palavras-chave da página principal e subpágina. Publicado no Surge Cloud.
+## Próximos 3 passos
+1. **Owner:** aplicar `supabase/migrations/001_fechar_leitura_publica.sql` no Supabase → SQL Editor → Run.
+2. **Agente:** rodar a prova de disparo (leitura anon de `leads` = 0 linhas/erro; `dashboard_stats` = números) e registrar abaixo.
+3. Bloco C (aguarda aprovação): keep-alive do Supabase, `_headers` no Netlify, GitHub Action com `audit.sh`.
 
----
+## Bloqueios / pendências
+- Migration 001 aplicada? **Aguardando o owner** (o agente não tem acesso de escrita ao banco).
+- Painel sem login e com senhas de demonstração em texto puro no `app.js` (`DEFAULT_USERS_DATA`), visíveis para qualquer visitante → owner decide: remover a tabela de usuários fictícia ou implementar Supabase Auth.
+- Domínio próprio: recomendado `mirianevwbrasilia.com` (não registrado ainda).
 
-## 📜 Histórico de Checkpoints (Append-Only)
+## Evidências (IA-EVIDENCE-01)
+- 2026-10-07 antes da migration: `HEAD /rest/v1/analytics_pageviews` com a chave anon → **HTTP 206, 27 linhas legíveis**. `HEAD /rest/v1/leads` → HTTP 200, `*/0` (tabela vazia ou policy não aplicada; inconclusivo).
+- `audit.sh` v3.5: antes 7✅ 4❌ 9⚠️ → depois: ver saída no commit PR-020.
 
-### [CP-018-REMOVE-APPROVAL-KW] — 25/09/2026
-- **Data/Hora:** 2026-09-25 00:15:00 (UTC-3)
-- **Autor da Autorização:** Usuário (via chat: *"remova "aprovação em 15 minutos"*)
-- **Resumo:**
-  - Removido o item `<div class="kw-item">Aprovação em 15 Minutos</div>` da barra superior de diferenciais/gatilhos em `index.html` e `traco-1.html`.
-  - Mantidos os diferenciais: *Bônus de Fábrica*, *Plano Sempre Novo VW*, *Atendimento VIP 5 Estrelas* e *Descontos CNPJ & Produtor Rural*.
-  - Deploy re-publicado no Surge Cloud.
-- **Arquivos Criados/Modificados:**
-  - `index.html` [MODIFY]
-  - `traco-1.html` [MODIFY]
-  - `ESTADO.md` [MODIFY]
-  - `FASES.md` [MODIFY]
-- **Commit/Tag Git:** `v4.0-remove-approval-kw`
-- **Instruções de Reversão (Rollback):**
-  ```bash
-  git checkout v4.0-remove-approval-kw
-  ```
+## Capacidade e hardware (SCALE-CAP-01)
+- Hospedagem estática em CDN (Netlify/Surge). Não há servidor próprio e o teto é dado pelos planos grátis. Não medido (sem cliente pagante).
 
----
+## Serviços externos (DEP-SERVICE-01)
+- **Supabase** `jrleyeoubalefjzgudcx` — conta: cleitonoliveira9577@gmail.com · plano: Free · limite que morde: **pausa após 7 dias sem requisições** · monitor: **não** (Bloco C).
+- **Netlify** projeto "miriane" — conta: GitHub iCooe · plano: Free · deploy automático de `main` · monitor: não.
+- **Surge** `miriane-alves-vw-brasilia.surge.sh` — conta: cleitonoliveira9577@gmail.com · plano: Free · legado.
+- **GitHub** `iCooe/vw-vendedora-site` — público.
+- **FormSubmit** — contingência do formulário · sem conta.
 
-### [CP-017-FLEET-CAROUSEL-SLIDER] — 25/09/2026
-- **Data/Hora:** 2026-09-25 00:10:00 (UTC-3)
-- **Autor da Autorização:** Usuário (via chat: *"Chat na frota, prefiro que seja em slide"*)
-- **Resumo:**
-  - Transformado o Grid de Veículos da Frota Volkswagen em **Carrossel/Slide Interativo** (Desktop & Mobile).
-  - Exibição de 3 cards de carros no Desktop (>992px), 2 no Tablet (601-992px) e 1 no Mobile (<=600px).
-  - Adicionados botões de navegação lateral (Prev/Next), indicadores/dots dinâmicos de página e suporte total a gestos de arrastar/touch swipe no celular.
-  - Sincronização inteligente com os botões de filtro de categoria (Todos, SUVs, Hatches, Pickups).
-  - Deploy re-publicado no Surge Cloud.
-- **Arquivos Criados/Modificados:**
-  - `index.html` [MODIFY]
-  - `traco-1.html` [MODIFY]
-  - `styles.css` [MODIFY]
-  - `app.js` [MODIFY]
-  - `ESTADO.md` [MODIFY]
-  - `FASES.md` [MODIFY]
-- **Commit/Tag Git:** `v3.9-fleet-slider`
-- **Instruções de Reversão (Rollback):**
-  ```bash
-  git checkout v3.9-fleet-slider
-  ```
-
----
-
-### [CP-016-FILTER-DELIVERY-PHOTOS] — 24/09/2026
-- **Data/Hora:** 2026-09-24 23:59:00 (UTC-3)
-- **Autor da Autorização:** Usuário (via chat: *"remova as que ela não aparece na foto como a 15 a 6 e 17"*)
-- **Resumo:**
-  - Removidos os cards das entregas 06, 15 e 17 dos carrosséis em `index.html` e `traco-1.html`.
-  - Mantidas 15 fotos de entregas onde a consultora Miriane Alves aparece nitidamente e com destaque.
-  - Deploy re-publicado no Surge Cloud.
-- **Arquivos Criados/Modificados:**
-  - `index.html` [MODIFY]
-  - `traco-1.html` [MODIFY]
-  - `ESTADO.md` [MODIFY]
-  - `FASES.md` [MODIFY]
-- **Commit/Tag Git:** `v3.8-filter-delivery-photos`
-- **Instruções de Reversão (Rollback):**
-  ```bash
-  git checkout v3.8-filter-delivery-photos
-  ```
-
----
-
-### [CP-015-REMOVE-IMAGE-19] — 24/09/2026
-- **Data/Hora:** 2026-09-24 23:50:00 (UTC-3)
-- **Autor da Autorização:** Usuário (via chat: *"remova essa ultima imagem"*)
-- **Resumo:**
-  - Removido o card da 19ª imagem (`entrega_19.jpg`) do carrossel de Prova Social no `index.html` e `traco-1.html`.
-  - Mantidas 18 fotos de entregas de altíssima qualidade, com enquadramento natural e sem textos indesejados.
-  - Deploy atualizado publicado no Surge Cloud.
-- **Arquivos Criados/Modificados:**
-  - `index.html` [MODIFY]
-  - `traco-1.html` [MODIFY]
-  - `ESTADO.md` [MODIFY]
-  - `FASES.md` [MODIFY]
-- **Commit/Tag Git:** `v3.7-remove-image-19`
-- **Instruções de Reversão (Rollback):**
-  ```bash
-  git checkout v3.7-remove-image-19
-  ```
-
----
-
-### [CP-014-DELIVERIES-CAROUSEL-SLIDER] — 24/09/2026
-- **Data/Hora:** 2026-09-24 23:40:00 (UTC-3)
-- **Autor da Autorização:** Usuário (via chat: *"na prova social, acho que ficaria melhor os imagens em slide... ocuparia menos espaços"*)
-- **Resumo:**
-  - Transformada a galeria estática de entregas em um **Carrossel/Slide Interativo**.
-  - Exibição de 3 cards por página no desktop, 2 no tablet e 1 no mobile.
-  - Implementados botões de seta com efeito glow em azul cyan VW, suporte completo a arrastar/deslizar com o dedo (touch swipe) em smartphones e indicadores numéricos/dots dinâmicos.
-  - Redução drástica do espaço vertical na página.
-  - Deploy atualizado publicado no Surge Cloud.
-- **Arquivos Criados/Modificados:**
-  - `styles.css` [MODIFY]
-  - `app.js` [MODIFY]
-  - `index.html` [MODIFY]
-  - `traco-1.html` [MODIFY]
-  - `ESTADO.md` [MODIFY]
-  - `FASES.md` [MODIFY]
-- **Commit/Tag Git:** `v3.6-deliveries-slider`
-- **Instruções de Reversão (Rollback):**
-  ```bash
-  git checkout v3.6-deliveries-slider
-  ```
-
----
-
-### [CP-013-REMOVE-PLATE-BADGES] — 24/09/2026
-- **Data/Hora:** 2026-09-24 23:25:00 (UTC-3)
-- **Autor da Autorização:** Usuário (via chat: *"chat essas plaquinha que escondem as placas quero que retire, não ficou bom não."*)
-- **Resumo:**
-  - Removidos todos os selos/plaquinhas de sobreposição desenhados sobre as placas dos veículos.
-  - Mantidos os recortes limpos para eliminação dos textos de stories do Instagram e botões de reação.
-  - Preservada a otimização de proporção natural (Aspect Ratio Fit).
-  - Deploy atualizado publicado no Surge Cloud.
-- **Arquivos Criados/Modificados:**
-  - `assets/deliveries/entrega_01.jpg` até `entrega_19.jpg` [MODIFY]
-  - `ESTADO.md` [MODIFY]
-  - `FASES.md` [MODIFY]
-- **Commit/Tag Git:** `v3.5-clean-deliveries`
-- **Instruções de Reversão (Rollback):**
-  ```bash
-  git checkout v3.5-clean-deliveries
-  ```
-
----
-
-### [CP-012-FIX-ASPECT-RATIO-DELIVERIES] — 24/09/2026
-- **Data/Hora:** 2026-09-24 23:15:00 (UTC-3)
-- **Autor da Autorização:** Usuário (via chat: *"algumas imagens estão esticadas, e ficou ruim"*)
-- **Resumo:**
-  - Recalculado o algoritmo de corte e redimensionamento das fotos de entregas para **preservar a proporção de aspecto natural (Aspect Ratio Fit)** sem esticar ou achatar a imagem.
-  - Ajustado o CSS do contêiner `.delivery-img-wrap img` com `object-fit: cover; object-position: center top;` e altura ajustada de 350px.
-  - Rostos, corpos de clientes, a Consultora Miriane e os carros Volkswagen agora aparecem 100% proporcionais e naturais.
-  - Deploy atualizado publicado no Surge Cloud.
-- **Arquivos Criados/Modificados:**
-  - `assets/deliveries/entrega_01.jpg` até `entrega_19.jpg` [MODIFY]
-  - `styles.css` [MODIFY]
-  - `ESTADO.md` [MODIFY]
-  - `FASES.md` [MODIFY]
-- **Commit/Tag Git:** `v3.4-aspect-ratio-fix`
-- **Instruções de Reversão (Rollback):**
-  ```bash
-  git checkout v3.4-aspect-ratio-fix
-  ```
-
----
-
-### [CP-011-PROVA-SOCIAL-DELIVERIES] — 24/09/2026
-- **Data/Hora:** 2026-09-24 23:02:00 (UTC-3)
-- **Autor da Autorização:** Usuário (via chat: *"na pasta e no diretório que eu estou te mandando, a gente tem todas as fotos de depoimento... você fizesse um tratamento de retirar os textos... e onde mostra placa de carro colocar como se tivesse borradinho..."*)
-- **Resumo:**
-  - Processadas as 19 fotos de entregas da pasta `C:\Users\Cleiton\Pictures\Screenshots`.
-  - Recorte (crop) cirúrgico para remoção de textos do Instagram Stories e botões de reação.
-  - Aplicação de selos/badges profissionais `VOLKSWAGEN BRASÍLIA - DF` sobre as placas dos veículos para total proteção de privacidade.
-  - Padronização em proporção uniforme `600x700px`.
-  - Inserção da seção **"Entregas Realizadas em Brasília - DF"** no `index.html` e `traco-1.html`.
-  - Deploy atualizado publicado no Surge Cloud.
-- **Arquivos Criados/Modificados:**
-  - `assets/deliveries/entrega_01.jpg` até `entrega_19.jpg` [NEW]
-  - `styles.css` [MODIFY]
-  - `index.html` [MODIFY]
-  - `traco-1.html` [MODIFY]
-  - `ESTADO.md` [MODIFY]
-  - `FASES.md` [MODIFY]
-- **Commit/Tag Git:** `v3.3-proof-of-delivery`
-- **Instruções de Reversão (Rollback):**
-  ```bash
-  git checkout v3.3-proof-of-delivery
-  ```
-
----
-
-### [CP-010-PROMOTE-SEO-TO-INDEX] — 24/09/2026
-- **Data/Hora:** 2026-09-24 22:13:00 (UTC-3)
-- **Autor da Autorização:** Usuário (via chat: *"A página que a gente acabou de criar, que é a traco-1, ela deve se tornar a principal e a outra, secundária..."*)
-- **Resumo:**
-  - Versão otimizada com Playbook Master de SEO 360 & GEO promovida para a página principal (`index.html`).
-  - Versão original sem otimizações preservada como página secundária em `pagina-original.html`.
-  - Canonical URL, Open Graph URL e Schema.org JSON-LD atualizados para apontar para a raiz `https://miriane-alves-vw-brasilia.surge.sh/`.
-  - Arquivo `sitemap.xml` atualizado com a nova hierarquia de URLs.
-  - Deploy publicado em produção no Surge Cloud (`https://miriane-alves-vw-brasilia.surge.sh`).
-- **Arquivos Criados/Modificados:**
-  - `index.html` [MODIFY]
-  - `pagina-original.html` [NEW]
-  - `sitemap.xml` [MODIFY]
-  - `ESTADO.md` [MODIFY]
-  - `FASES.md` [MODIFY]
-- **Commit/Tag Git:** `v3.2-seo-as-primary`
-- **Instruções de Reversão (Rollback):**
-  ```bash
-  git checkout v3.2-seo-as-primary
-  ```
-
----
-
-### [CP-009-SEO-DUPLICATED-SUBPAGE] — 24/09/2026
-- **Data/Hora:** 2026-09-24 21:55:00 (UTC-3)
-- **Autor da Autorização:** Usuário (via chat: *"Pode executar. Assim que você finalizar, eu quero que você me envie os dois links..."*)
-- **Resumo:**
-  - Página original `index.html` mantida 100% intocada.
-  - Criada a subpágina `traco-1.html` aplicando a totalidade das otimizações do **Playbook Master de SEO 360 & GEO**: Meta Tags completas, Open Graph, Twitter Cards, Schema.org `AutoDealer` (LocalBusiness em SGCV Brasília) & `FAQPage` em JSON-LD, marcações semânticas e imagens alt com keywords locais.
-  - Criados os arquivos técnicos de indexação no root: `sitemap.xml` e `robots.txt`.
-  - Publicado o site atualizado no Surge Cloud (`https://miriane-alves-vw-brasilia.surge.sh`).
-- **Arquivos Criados/Modificados:**
-  - `traco-1.html` [NEW]
-  - `sitemap.xml` [NEW]
-  - `robots.txt` [NEW]
-  - `ESTADO.md` [MODIFY]
-  - `FASES.md` [MODIFY]
-- **Commit/Tag Git:** `v3.1-seo-subpage`
-- **Instruções de Reversão (Rollback):**
-  ```bash
-  git checkout v3.1-seo-subpage
-  ```
-
----
-
-### [CP-007-FIX-TAOS-IMAGE] — 19/09/2026
-- **Data/Hora:** 2026-09-19 11:01:00 (UTC-3)
-- **Autor da Autorização:** Usuário (via chat: *"ok"*)
-- **Resumo:**
-  - Substituída a imagem genérica da concessionária (`./assets/vw_hero.jpg`) pela foto oficial do SUV **Novo Volkswagen Taos Highline** (`./assets/vw_taos.jpg`).
-  - Atualizada a propriedade `image` em `VEHICLES_DATA` no `app.js`.
-  - Deploy publicado em produção no Surge Cloud (`https://miriane-alves-vw-brasilia.surge.sh`).
-- **Arquivos Criados/Modificados:**
-  - `assets/vw_taos.jpg` [NEW]
-  - `app.js` [MODIFY]
-  - `ESTADO.md` [MODIFY]
-  - `FASES.md` [MODIFY]
-- **Commit/Tag Git:** `v2.3-taos-image`
-- **Instruções de Reversão (Rollback):**
-  ```bash
-  git checkout v2.3-taos-image
-  ```
-
----
-
-### [CP-006-REMOVE-PRICES] — 19/09/2026
-- **Data/Hora:** 2026-09-19 10:52:00 (UTC-3)
-- **Commit/Tag Git:** `v2.2-remove-prices`
-
----
-
-### [CP-005-ADD-PHONE-FIELD-TO-LEAD] — 19/09/2026
-- **Data/Hora:** 2026-09-19 10:45:00 (UTC-3)
-- **Commit/Tag Git:** `v2.1-phone-field`
-
----
-
-### [CP-004-PRODUCTION-RELEASE-V2] — 19/09/2026
-- **Data/Hora:** 2026-09-19 10:18:00 (UTC-3)
-- **Commit/Tag Git:** `v2.0-production-release`
+## Fases concluídas
+- F1–F4 — Governança, leads, painel, produção — `93eb2a0` — 2026-09-19
+- F5 — SEO 360/GEO + prova social + carrosséis — `2ea7974` — 2026-09-25
+- F6 — GitHub + Netlify — `32623bc` — 2026-10-02

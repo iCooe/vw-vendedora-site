@@ -81,26 +81,23 @@ async function trackPageviewSupabase() {
 }
 
 // Buscar Dados Consolidados da Dashboard no Supabase
+// Usa SOMENTE a função agregada dashboard_stats() — devolve contagens, nunca linhas.
+// O navegador não pede mais dados pessoais de leads (ver docs/adr/ADR-002).
 async function fetchDashboardDataFromSupabase() {
   try {
     const client = getSupabaseClient();
     if (!client) return null;
 
-    // 1. Total Acessos
-    const { count: totalViews } = await client.from("analytics_pageviews").select("*", { count: "exact", head: true });
-
-    // 2. Dispositivos Mobile vs Desktop
-    const { data: pageviews } = await client.from("analytics_pageviews").select("device_type, user_agent");
-    const uniqueDevices = pageviews ? new Set(pageviews.map(p => p.user_agent)).size : 0;
-
-    // 3. Total Preenchimentos / Leads
-    const { count: totalLeads, data: leadsList } = await client.from("leads").select("*", { count: "exact" }).order("created_at", { ascending: false });
+    const { data, error } = await client.rpc("dashboard_stats");
+    if (error || !data) {
+      console.warn("dashboard_stats indisponível (migration 001 aplicada?):", error);
+      return null;
+    }
 
     return {
-      totalViews: totalViews || 0,
-      uniqueDevices: uniqueDevices || 0,
-      totalLeads: totalLeads || 0,
-      leadsList: leadsList || []
+      totalViews: data.total_views || 0,
+      uniqueDevices: data.unique_devices || 0,
+      totalLeads: data.total_leads || 0
     };
   } catch (err) {
     console.error("Erro ao buscar estatísticas do Supabase:", err);
